@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feliz Aniversário, Aline 💖</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(270deg, #ffd6e8, #ffe6f0, #ffb6c1, #ffc1d9);
+      background-size: 800% 800%;
+      animation: gradientShift 10s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .heart {
+      position: relative;
+      width: 120px;
+      height: 100px;
+      cursor: pointer;
+      animation: pulse 1s infinite;
+      transition: transform 0.4s;
+      filter: drop-shadow(0 0 10px #ff99cc);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 60px;
+      height: 100px;
+      border-radius: 50px 50px 0 0;
+      background: radial-gradient(circle at 30% 30%, #ff5c8a, #ff0033);
+    }
+
+    .heart::before {
+      left: 60px;
+      transform: rotate(-45deg);
+      transform-origin: 0 100%;
+    }
+
+    .heart::after {
+      left: 0;
+      transform: rotate(45deg);
+      transform-origin: 100% 100%;
+    }
+
+    p {
+      margin-top: 25px;
+      font-size: 1.4rem;
+      color: #8b004f;
+      font-weight: 600;
+      text-shadow: 0 0 8px #fff;
+    }
+
+    .explode {
+      animation: explode 0.8s ease-out forwards;
+    }
+
+    @keyframes explode {
+      0% { transform: scale(1); opacity: 1; filter: brightness(1); }
+      50% { transform: scale(2); filter: brightness(2); }
+      100% { transform: scale(5); opacity: 0; }
+    }
+
+    .message {
+      display: none;
+      text-align: center;
+      color: #fff;
+      font-size: 1.8rem;
+      font-weight: 600;
+      line-height: 1.6;
+      text-shadow: 0 0 12px #ff66a3;
+      opacity: 0;
+      animation: fadeIn 2s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #ff69b4;
+      top: 0;
+      animation: fall linear forwards;
+      border-radius: 50%;
+      z-index: 0;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    .funny-button {
+      display: none;
+      margin-top: 30px;
+      background: #ff4081;
+      color: #fff;
+      border: none;
+      padding: 15px 25px;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      animation: bounce 1.5s infinite;
+      box-shadow: 0 0 15px #ff66a3;
+      transition: all 0.3s;
+    }
+
+    .funny-button:hover {
+      transform: scale(1.1);
+      background: #ff1f6b;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .video-container {
+      display: none;
+      margin-top: 25px;
+      animation: popIn 1s ease forwards;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    iframe {
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(255, 105, 180, 0.5);
+      width: 300px;
+      height: 180px;
+    }
+
+    @media (min-width: 600px) {
+      iframe {
+        width: 560px;
+        height: 315px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="heart" id="heart"></div>
+  <p>Clique no coração, Aline 💖</p>
+
+  <div class="message" id="message">
+    🎉 Feliz Aniversário, Aline! 🎂<br>
+    Que seu dia seja repleto de amor, alegria e muitos sorrisos! 💕<br>
+    Você é uma luz linda que ilumina o mundo ao seu redor! 🌷✨
+  </div>
+
+  <button class="funny-button" id="funnyButton">😂 Clique aqui pra uma surpresa!</button>
+
+  <div class="video-container" id="videoContainer">
+    <iframe 
+      src="https://www.youtube.com/embed/-yajPGpo1Xg?autoplay=1"
+      title="Surpresa para Aline"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <script>
+    const heart = document.getElementById("heart");
+    const message = document.getElementById("message");
+    const funnyButton = document.getElementById("funnyButton");
+    const videoContainer = document.getElementById("videoContainer");
+
+    heart.addEventListener("click", () => {
+      heart.classList.add("explode");
+
+      // Confete colorido 🎊
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        confetti.style.left = Math.random() * window.innerWidth + "px";
+        confetti.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`;
+        confetti.style.animationDuration = 2 + Math.random() * 3 + "s";
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 5000);
+      }
+
+      setTimeout(() => {
+        heart.style.display = "none";
+        message.style.display = "block";
+
+        // Depois da mensagem aparece o botão engraçado
+        setTimeout(() => {
+          funnyButton.style.display = "inline-block";
+        }, 2500);
+      }, 800);
+    });
+
+    funnyButton.addEventListener("click", () => {
+      funnyButton.style.display = "none";
+      videoContainer.style.display = "block";
+    });
+  </script>
+</body>
+</html>
