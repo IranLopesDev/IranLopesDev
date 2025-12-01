@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Iran Lopes — Desenvolvedor Web & ADS</title>
+<meta name="description" content="Iran Lopes — Desenvolvedor Web, Landing Pages, Gestão de Ads (Google & Meta) e PWA. Vespasiano - MG." />
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg-1: #06243a;
+    --bg-2: #063a57;
+    --accent: #06c7e8; /* ciano */
+    --accent-2: #6be0ff; /* azul claro */
+    --warm: #ffd166; /* amarelo suave para destaque */
+    --card-bg: rgba(255,255,255,0.06);
+    --glass: rgba(255,255,255,0.06);
+    --text: #e9f5ff;
+    --muted: rgba(233,245,255,0.75);
+    --shadow: 0 10px 30px rgba(3,15,30,0.45);
+    --radius: 14px;
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: radial-gradient(1200px 600px at 10% 10%, rgba(6,199,232,0.06), transparent),
+                radial-gradient(1000px 400px at 90% 85%, rgba(107,224,255,0.04), transparent),
+                linear-gradient(180deg,var(--bg-1),var(--bg-2));
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    overflow-x:hidden;
+  }
+
+  /* Container */
+  .wrap{max-width:1120px;margin:0 auto;padding:28px 20px}
+
+  /* Top nav (minimal) */
+  .nav{
+    display:flex;justify-content:space-between;align-items:center;padding:6px 0;
+  }
+  .brand{display:flex;gap:12px;align-items:center}
+  .brand-logo{
+    width:44px;height:44px;border-radius:10px;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    display:flex;align-items:center;justify-content:center;font-weight:800;color:#042433;
+    box-shadow:0 6px 20px rgba(6,199,232,0.12);
+  }
+  .nav-links{display:flex;gap:12px;align-items:center}
+  .nav-links a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:10px;font-weight:600}
+  .nav-links a:hover{background:rgba(255,255,255,0.03);color:var(--accent-2)}
+
+  /* HERO */
+  .hero{
+    margin-top:18px;
+    display:grid;
+    grid-template-columns: 1fr 420px;
+    gap:28px;
+    align-items:center;
+    min-height:420px;
+  }
+
+  .hero-card{
+    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+    padding:30px;border-radius:18px;box-shadow:var(--shadow);
+    position:relative;overflow:hidden;
+  }
+
+  .kicker{display:inline-block;background:rgba(255,255,255,0.06);padding:6px 12px;border-radius:999px;color:var(--muted);font-weight:700;font-size:13px;margin-bottom:14px}
+  h1{font-size:34px;line-height:1.02;margin:6px 0 10px;color:var(--accent-2);font-weight:800;letter-spacing:-0.5px}
+  .sub{color:var(--muted);font-weight:600;margin-bottom:18px}
+  .lead{color:rgba(233,245,255,0.9);margin-top:8px;line-height:1.6}
+  .cta-row{margin-top:20px;display:flex;gap:12px;align-items:center}
+  .btn{
+    background:linear-gradient(90deg,var(--accent),var(--accent-2));
+    color:#02313a;padding:12px 18px;border-radius:12px;font-weight:700;text-decoration:none;box-shadow:0 10px 30px rgba(6,199,232,0.14)
+  }
+  .btn--ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);padding:10px 14px;border-radius:12px}
+
+  .features{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+  .feat{background:rgba(255,255,255,0.02);padding:10px 12px;border-radius:10px;font-weight:600;color:var(--muted);font-size:14px}
+
+  /* profile card */
+  .profile{
+    width:420px;padding:18px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.06));box-shadow:var(--shadow);
+    display:flex;flex-direction:column;align-items:center;gap:14px;position:relative;
+  }
+  .photo{
+    width:160px;height:160px;border-radius:50%;overflow:hidden;border:6px solid rgba(255,255,255,0.06);box-shadow:0 8px 30px rgba(4,34,51,0.4);
+    transform:translateY(-30px);
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    display:flex;align-items:center;justify-content:center;
+  }
+  .photo img{width:100%;height:100%;object-fit:cover;display:block}
+  .profile h3{margin:0;color:var(--text);font-size:20px}
+  .profile p{color:var(--muted);font-weight:600}
+
+  /* floating tags */
+  .tag-list{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:6px}
+  .tag{background:rgba(255,255,255,0.03);padding:8px 12px;border-radius:999px;color:var(--muted);font-weight:700;font-size:13px}
+
+  /* section headings */
+  .section{padding:48px 0}
+  .section h2{color:var(--accent-2);text-align:center;font-size:26px;margin-bottom:18px;font-weight:800}
+
+  /* services grid */
+  .grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;
+  }
+  .service-card{
+    background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.04));
+    padding:22px;border-radius:14px;box-shadow:0 8px 30px rgba(2,8,20,0.35);transition:transform .45s cubic-bezier(.2,.9,.3,1), box-shadow .25s;
+    border:1px solid rgba(255,255,255,0.03);
+  }
+  .service-card:hover{transform:translateY(-10px);box-shadow:0 20px 50px rgba(3,15,30,0.55)}
+  .icon{
+    width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#042433;font-weight:800;box-shadow:0 8px 22px rgba(6,199,232,0.12)
+  }
+  .service-card h3{margin:0 0 8px;color:var(--text);font-size:18px}
+  .service-card p{color:var(--muted);line-height:1.5;font-size:14px}
+
+  /* prices row */
+  .prices-row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+  .price{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);
+    text-align:center;min-width:180px;
+  }
+  .price .amt{font-weight:800;color:var(--accent-2);font-size:20px;margin-top:6px}
+
+  /* testimonials */
+  .test-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:20px;border-radius:12px;border-left:4px solid var(--warm);color:var(--muted);box-shadow:0 12px 30px rgba(0,0,0,0.18)}
+
+  /* contact area */
+  .contact-wrap{display:flex;gap:20px;align-items:center;flex-wrap:wrap;justify-content:center}
+  .contact-box{padding:20px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow:0 10px 30px rgba(0,0,0,0.12);min-width:260px;text-align:center}
+  .contact-box a{display:inline-block;margin-top:10px;text-decoration:none;background:linear-gradient(90deg,#00b7d8,#6be0ff);color:#02313a;padding:12px 16px;border-radius:12px;font-weight:800;box-shadow:0 10px 30px rgba(6,199,232,0.12)}
+
+  /* floating whatsapp button */
+  .whatsapp-float{
+    position:fixed;right:22px;bottom:22px;background:linear-gradient(90deg,#00c0d8,#06c7e8);width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;color:#022;z-index:9999;box-shadow:0 18px 40px rgba(3,15,30,0.45);transition:transform .18s;
+  }
+  .whatsapp-float:hover{transform:translateY(-6px)}
+
+  /* footer */
+  footer{padding:36px 20px;text-align:center;color:var(--muted);margin-top:40px}
+
+  /* small screens */
+  @media(max-width:980px){
+    .hero{grid-template-columns:1fr; padding-bottom:10px}
+    .profile{width:100%}
+    .photo{width:140px;height:140px}
+  }
+
+  /* subtle entrance animations */
+  .anim{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s cubic-bezier(.2,.9,.3,1)}
+  .anim.show{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav class="nav" aria-label="Navegação principal">
+    <div class="brand">
+      <div class="brand-logo">IL</div>
+      <div style="color:var(--text);font-weight:700">Iran Lopes</div>
+    </div>
+    <div class="nav-links">
+      <a href="#sobre">Sobre</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#precos">Preços</a>
+      <a href="#contato">Contato</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-card anim" style="--delay:0.05s">
+      <div class="kicker">Desenvolvedor Web & ADS</div>
+      <h1>Crio páginas e campanhas que convertem</h1>
+      <div class="sub">Landing Pages • Gestão de Ads (Google & Meta) • PWA / Apps Híbridos</div>
+      <p class="lead">Ajudo empresas e empreendedores a transformar visitantes em clientes usando páginas otimizadas, campanhas bem segmentadas e aplicações que funcionam no celular. Entrego rápido, objetivo e com foco em resultado.</p>
+
+      <div class="cta-row">
+        <a class="btn" href="https://wa.me/5531995024865?text=Ol%C3%A1%2C+gostaria+de+saber+mais+sobre+seus+servi%C3%A7os!" target="_blank" rel="noopener">Falar no WhatsApp</a>
+        <a class="btn--ghost" href="#precos">Ver preços</a>
+      </div>
+
+      <div class="features" aria-hidden="true">
+        <div class="feat">Entrega 3–7 dias</div>
+        <div class="feat">SEO & Performance</div>
+        <div class="feat">Integração WhatsApp</div>
+      </div>
+    </div>
+
+    <aside class="profile anim" style="--delay:0.15s">
+      <div class="photo" title="Foto de perfil — provisional">
+        <!-- Foto gerada/placeholder: troque a URL depois -->
+        <img alt="Retrato profissional Iran Lopes" src="https://images.unsplash.com/photo-1545996124-1b6e5f6f42b2?auto=format&fit=crop&w=800&q=80">
+      </div>
+      <h3>Iran Lopes</h3>
+      <p>Vespasiano – MG • Desenvolvedor Web & ADS</p>
+
+      <div class="tag-list" aria-hidden="true">
+        <div class="tag">HTML</div>
+        <div class="tag">CSS</div>
+        <div class="tag">JavaScript</div>
+        <div class="tag">Node.js</div>
+        <div class="tag">Cordova</div>
+      </div>
+
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <a class="btn" href="mailto:iranlopesdev@gmail.com" style="padding:9px 12px;font-size:14px">✉️ Email</a>
+        <a class="btn--ghost" href="https://wa.me/5531995024865" target="_blank">💬 WhatsApp</a>
+      </div>
+    </aside>
+  </header>
+
+  <!-- SOBRE -->
+  <section id="sobre" class="section">
+    <h2>Sobre mim</h2>
+    <div class="anim" style="--delay:0.05s">
+      <p style="max-width:900px;margin:10px auto 0;color:var(--muted);line-height:1.7">
+        Olá — sou <strong>Iran Lopes</strong>, formado no curso técnico de <strong>Análise e Desenvolvimento de Sistemas (ADS)</strong> pelo SENAI Luiz César Bertini (Vespasiano). Trabalho com <strong>HTML, CSS, JavaScript, Node.js, MySQL e Apache Cordova</strong>. Gosto de criar páginas rápidas e objetivas, campanhas que entreguem resultado e aplicações que realmente funcionem no celular.
+      </p>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section id="servicos" class="section">
+    <h2>Serviços</h2>
+    <div class="grid">
+      <div class="service-card anim" style="--delay:0.06s">
+        <div class="icon">LP</div>
+        <h3>Landing Pages</h3>
+        <p>Páginas otimizadas para conversão: design limpo, CTA claro, integração com WhatsApp e formulário. Ideal pra promoções, captação de leads e vendas locais.</p>
+      </div>
+
+      <div class="service-card anim" style="--delay:0.12s">
+        <div class="icon">ADS</div>
+        <h3>Gestão de Anúncios (Google & Meta)</h3>
+        <p>Setup e gerenciamento de campanhas segmentadas, otimização de custo por lead e relatórios mensais. Suporte para pequenos e médios orçamentos.</p>
+      </div>
+
+      <div class="service-card anim" style="--delay:0.18s">
+        <div class="icon">PWA</div>
+        <h3>PWA e Apps Híbridos</h3>
+        <p>Apps progressivos e soluções Cordova para transformar sites em apps funcionais, com comportamento mobile e offline básico.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREÇOS -->
+  <section id="precos" class="section">
+    <h2>Preços (referência)</h2>
+    <div class="prices-row anim" style="--delay:0.08s">
+      <div class="price">
+        <div style="font-weight:700">Página simples</div>
+        <div class="amt">R$ 200</div>
+        <div style="color:var(--muted);font-size:13px;margin-top:8px">Entrega 3–7 dias • 1 revisão</div>
+      </div>
+      <div class="price">
+        <div style="font-weight:700">Pacote ADS</div>
+        <div class="amt">R$ 250 / mês</div>
+        <div style="color:var(--muted);font-size:13px;margin-top:8px">+ verba da plataforma (recomendado a partir de R$150/mês)</div>
+      </div>
+      <div class="price">
+        <div style="font-weight:700">PWA / Sistema</div>
+        <div class="amt">Sob consulta</div>
+        <div style="color:var(--muted);font-size:13px;margin-top:8px">Orçamento após briefing</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFÓLIO - exemplos -->
+  <section id="portfolio" class="section">
+    <h2>Portfólio (exemplos)</h2>
+    <div class="grid">
+      <div class="service-card anim" style="--delay:0.06s">
+        <div style="font-weight:800;color:var(--accent-2);margin-bottom:8px">Pizzaria Express — Landing</div>
+        <p style="color:var(--muted)">Menu + pedido via WhatsApp + destaque de promoções. Conversão otimizada para pedidos rápidos.</p>
+      </div>
+      <div class="service-card anim" style="--delay:0.12s">
+        <div style="font-weight:800;color:var(--accent-2);margin-bottom:8px">Estética Bella — Agendamento</div>
+        <p style="color:var(--muted)">Página com agendamento simples, integração com Google Calendar e formulário com confirmação via WhatsApp.</p>
+      </div>
+      <div class="service-card anim" style="--delay:0.18s">
+        <div style="font-weight:800;color:var(--accent-2);margin-bottom:8px">Loja Local — Campanha</div>
+        <p style="color:var(--muted)">Campanha Meta + Landing com cupom de 10% para captação de clientes locais. Relatório mensal de ROI.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTO -->
+  <section id="depoimentos" class="section">
+    <h2>Depoimentos</h2>
+    <div style="max-width:900px;margin:0 auto">
+      <div class="test-card anim" style="--delay:0.07s">
+        “O Iran entregou nosso site rápido, com design moderno e ajudou a montar as campanhas. O atendimento foi excelente e vimos resultado já no primeiro mês.” — <strong>Cliente (exemplo)</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section id="contato" class="section">
+    <h2>Contato</h2>
+    <div class="contact-wrap anim" style="--delay:0.05s">
+      <div class="contact-box">
+        <div style="font-weight:800;color:var(--accent-2)">WhatsApp</div>
+        <div style="color:var(--muted);margin-top:6px">(31) 9 9502-4865</div>
+        <a href="https://wa.me/5531995024865?text=Ol%C3%A1%2C+gostaria+de+um+or%C3%A7amento" target="_blank">Abrir WhatsApp</a>
+      </div>
+
+      <div class="contact-box">
+        <div style="font-weight:800;color:var(--accent-2)">E-mail</div>
+        <div style="color:var(--muted);margin-top:6px">iranlopesdev@gmail.com</div>
+        <a href="mailto:iranlopesdev@gmail.com">Enviar e-mail</a>
+      </div>
+
+      <div class="contact-box">
+        <div style="font-weight:800;color:var(--accent-2)">Redes</div>
+        <div style="color:var(--muted);margin-top:6px">@iranlopes.dev</div>
+        <div style="margin-top:10px"><a style="color:var(--accent-2);text-decoration:none;font-weight:700" href="https://instagram.com/iranlopes.dev" target="_blank">@instagram</a> &nbsp; • &nbsp; <span style="color:var(--muted)">LinkedIn (preencher)</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="yr"></span> Iran Lopes — Desenvolvedor Web & ADS • Vespasiano - MG
+  </footer>
+</div>
+
+<!-- WhatsApp floating button -->
+<a class="whatsapp-float" href="https://wa.me/5531995024865?text=Ol%C3%A1%2C+vi+seu+site+e+gostaria+de+mais+infos" target="_blank" aria-label="Falar no WhatsApp">
+  <!-- SVG WhatsApp icon (white) -->
+  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <path d="M20.52 3.48C18.3 1.26 15.28 0 12 0 5.37 0 .04 5.37 .04 12c0 2.12.57 4.14 1.64 5.93L0 24l6.37-1.65C8.06 23.43 10.04 24 12 24c6.63 0 12-5.37 12-12 0-3.28-1.26-6.3-3.48-8.52z" fill="#042433"/>
+    <path d="M17.1 14.38c-.3-.15-1.77-.86-2.05-.95-.28-.08-.48-.15-.68.15-.2.3-.78.95-.96 1.15-.17.2-.34.22-.64.07-.3-.15-1.27-.47-2.42-1.5-.9-.8-1.5-1.78-1.67-2.08-.17-.3-.02-.46.13-.61.13-.13.3-.34.45-.51.15-.15.2-.27.3-.45.1-.17.05-.32-.03-.47-.08-.15-.68-1.63-.93-2.22-.24-.58-.49-.5-.68-.51-.18-.01-.38-.01-.58-.01-.2 0-.52.07-.79.32-.28.25-1.06 1.03-1.06 2.5 0 1.47 1.08 2.9 1.23 3.1.15.2 2.12 3.36 5.13 4.7 3.01 1.34 3.01.89 3.55.83.54-.07 1.77-.72 2.02-1.41.25-.7.25-1.3.17-1.41-.08-.11-.28-.17-.58-.31z" fill="#06c7e8"/>
+  </svg>
+</a>
+
+<script>
+  // set year
+  document.getElementById('yr').innerText = new Date().getFullYear();
+
+  // simple reveal animations on scroll
+  const appear = function() {
+    const els = document.querySelectorAll('.anim');
+    const buffer = window.innerHeight * 0.85;
+    els.forEach(el => {
+      const top = el.getBoundingClientRect().top;
+      if(top < buffer) el.classList.add('show');
+    });
+  };
+  window.addEventListener('scroll', appear);
+  window.addEventListener('load', () => { appear(); /* small stagger */ 
+    document.querySelectorAll('.anim').forEach((el,i)=>{ el.style.transitionDelay = (i*80)+'ms'; });
+  });
+
+  // tiny parallax on hero photo (mouse move)
+  const photo = document.querySelector('.photo');
+  if(photo){
+    document.addEventListener('mousemove', (e)=>{
+      const rect = photo.getBoundingClientRect();
+      const cx = rect.left + rect.width/2;
+      const cy = rect.top + rect.height/2;
+      const dx = (e.clientX - cx) / rect.width;
+      const dy = (e.clientY - cy) / rect.height;
+      photo.style.transform = `translateY(-30px) rotateY(${dx*6}deg) rotateX(${dy*-6}deg)`;
+    });
+    document.addEventListener('mouseleave', ()=>{ photo.style.transform = 'translateY(-30px)'; });
+  }
+</script>
+
+</body>
+</html>
